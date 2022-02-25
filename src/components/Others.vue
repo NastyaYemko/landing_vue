@@ -1,20 +1,33 @@
 <template>
   <section class="others">
-    <div class="text">
-        <div class="name-of-others">Hear what others say</div>
-        <div class="description-of-others">Lorem ipsum dolor sit amet, consectetur adipiscing elit. uisque ullamcorper porttitor blandit. Praesent lorem magna, fring</div>
-    </div>
-      <img src="../assets/Image.png" alt="">
+    <block  :name="name" :description="description" class="text">
+    </block>
+    <div class="img"></div>
   </section>
 </template>
 
 <script>
+import Block from "./elements/Block";
+
 export default {
-  name: "Others"
+  name: "Others",
+  components: {Block},
+  data(){
+    return{
+      name: 'Hear what others say',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. uisque ullamcorper porttitor blandit. Praesent lorem magna, fring'
+    }
+  },
 }
 </script>
 
 <style scoped>
+.img{
+  width: 617px;
+  height: 342px;
+  background-image: url("../assets/Image.png");
+  background-size: cover;
+}
 .others{
   background: #09002B;
   height: 90vh;
@@ -23,25 +36,17 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-.name-of-others{
-  font-family: SF Pro Display;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 45px;
-  text-align: center;
-  color: #FFFFFF;
-
+.text{
+  max-width: 477px;
 }
-.description-of-others{
-  font-family: SF Pro Display;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 19px;
-  text-align: center;
-  color: #FFFFFF;
-  max-width: 460px;
-  margin: 7px;
+@media screen and (max-width: 700px) {
+  .img{
+    width: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+  .text{
+    width: 90%;
+  }
 }
 </style>

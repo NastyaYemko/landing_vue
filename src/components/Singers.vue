@@ -2,62 +2,49 @@
 <section>
   <div class="speaker">
   <div class="description">
-    <transition  appear name="bounce">
-      <div class="block">
-        <div class="text">
-        <div class="name-of-block">Listen from one of the best singers</div>
-        <div class="description-of-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. uisque ullamcorper porttitor blandit. Praesent lorem magna, fring</div>
-        <img style="margin-top: 20px" src="../assets/talkToUsButton.png" alt="">
-        </div>
-        </div>
-    </transition>
+    <block  :name="name" :description="description" class="block">
+      <img src="../assets/talkToUsButton.png" alt="">
+    </block>
   </div>
     <div class="img">
-<!--  <img src="../assets/speaker.png" alt="">-->
     </div>
   </div>
 </section>
 </template>
 
 <script>
+import Block from "./elements/Block";
+
 export default {
-  name: "Singers"
+  name: "Singers",
+  components: {Block},
+  data(){
+    return{
+      name: 'Listen from one of the best singers',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. uisque ullamcorper porttitor blandit. Praesent lorem magna, fring'
+    }
+  },
 }
 </script>
 
 <style scoped>
-.bounce-enter-active {
-  animation: bounce-in .5s;
-}
-.bounce-leave-active {
-  animation: bounce-in .5s reverse;
-}
-@keyframes bounce-in {
-  0% {
-    transform: scale(0.5);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
+img{
+  margin-top: 10px;
 }
 .img{
-  width: 765px;
-  height: 680px;
+  width: 55%;
   background-image: url("../assets/speaker.png");
-  background-size: cover;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 .speaker{
   background: #11024B;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-  /*display: grid;*/
-  /*grid-template-columns: 1fr 1fr;*/
 }
 .description{
+  width: 45%;
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,22 +53,20 @@ export default {
   max-width: 450px;
   margin: 97px;
 }
-.name-of-block{
-  font-family: SF Pro Display;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 45px;
-  color: #FFFFFF;
-}
-
-.description-of-block{
-  font-family: SF Pro Display;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-  color: #FFFFFF;
-  margin-top: 10px;
+@media screen and (max-width: 800px) {
+  .speaker{
+    display: flex;
+    flex-direction: column;
+  }
+  .description{
+    height: 60vh;
+    width: 100%;
+  }
+  .img{
+    width: 100%;
+    height: 70vh;
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
 }
 </style>

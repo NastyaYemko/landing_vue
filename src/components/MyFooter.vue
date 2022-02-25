@@ -1,91 +1,76 @@
 <template>
 <section>
-<div>
-  <div class="name-of-column">Navigation</div>
-  <div class="column">Home</div>
-  <div class="column">Articles</div>
-  <div class="column">Blog</div>
-</div>
-  <div>
-  <div class="name-of-column">Our socials</div>
-  <div class="column">Instagram</div>
-  <div class="column">Spotify</div>
-  <div class="column">Facebook</div>
-</div>
+<div class="columns">
+  <list :name="navigation.name" :columns="navigation.columns" class="block"/>
+  <list :name="our_socials.name" :columns="our_socials.columns"/>
   <div class="logo">
-    <div class="ellipse">
-      <span class="podcaster">Podcaster</span>
-    </div>
+    <podcaster/>
   </div>
-  <div>
-  <div class="name-of-column">Usefull links</div>
-  <div class="column">Privacy police</div>
-  <div class="column">Terms & conditions</div>
-  <div class="column">Exchange and return policy</div>
-</div>
-  <div>
-  <div class="name-of-column">Information</div>
-  <div class="column">About us</div>
-  <div class="column">Contact us</div>
-  <div class="column">Blogs</div>
-  <div class="column">FAQ</div>
+  <list :name="usefull_links.name" :columns="usefull_links.columns"/>
+  <list :name="information.name" :columns="information.columns"/>
 </div>
 </section>
 </template>
 
 <script>
+import List from "./elements/List";
+import Podcaster from "./elements/Podcaster";
 export default {
-  name: "MyFooter"
+  name: "MyFooter",
+  components: {Podcaster, List},
+  data(){
+    return{
+      navigation: {
+        name: 'Navigation',
+        columns: ['Home', 'Articles', 'Blog']
+      },
+      our_socials: {
+        name: 'Our socials',
+        columns: ['Instagram', 'Spotify', 'Facebook']
+      },
+      usefull_links: {
+        name: 'Usefull links',
+        columns: ['Privacy police', 'Terms & conditions', 'Exchange and return policy']
+      },
+      information: {
+        name: 'Information',
+        columns: ['About us', 'Contact us', 'Blogs', 'FAQ']
+      }
+    }
+  }
 }
 </script>
 
 <style scoped>
  section{
    background: #11024B;
-   min-height: 60vh;
+   height: 60vh;
+   display: flex;
+   padding: 10px;
+ }
+ .columns{
+   width: 100%;
    display: flex;
    justify-content: space-around;
    align-items: center;
-  flex-wrap: wrap;
  }
- .ellipse{
-   width: 144px;
-   height: 61px;
-   background: #3531A9;
-   border: 1px solid #000000;
-   box-sizing: border-box;
-   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-   transform: rotate(-30deg);
-   border-radius: 200%;
- }
- .podcaster{
-   position: absolute;
-   width: 154px;
-   height: 58px;
-   transform: rotate(30deg);
-   font-family: Caveat;
-   font-style: normal;
-   font-weight: bold;
-   font-size: 46px;
-   line-height: 58px;
-   color: #FFFFFF;
- }
- .name-of-column{
-   font-family: SF Pro Display;
-   font-style: normal;
-   font-weight: bold;
-   font-size: 18px;
-   line-height: 21px;
+ @media screen and (max-width: 700px) {
+   section{
+     height: 100vh;
+   }
+   .columns{
+     flex-wrap: wrap;
+   }
 
-   color: #3531A9;
- }
- .column{
-   font-family: SF Pro Display;
-   font-style: normal;
-   font-weight: 500;
-   font-size: 18px;
-   line-height: 21px;
-   margin-top: 21px;
-   color: #FFFFFF;
+   .block{
+     /*margin: 20px;*/
+   }
+   .logo{
+     width: 100%;
+     /*margin: 20px;*/
+     padding: 20px;
+     display: flex;
+     justify-content: center;
+   }
  }
 </style>

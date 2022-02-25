@@ -1,14 +1,14 @@
 <template>
+  <module v-model:show="dialogVisible"/>
   <section class="navigate">
     <div class="pages">
-      <div class="page">Home</div>
-      <div class="page">Articles</div>
-      <div class="page">Blog</div>
+      <p class="page">Home</p>
+      <p class="page">Articles</p>
+      <p class="page">Blog</p>
     </div>
+    <div class="hamburger" @click="showDialog"></div>
     <div class="name">
-      <div class="ellipse">
-        <span class="podcaster">Podcaster</span>
-      </div>
+     <podcaster/>
     </div>
     <div class="social-networks">
       <div class="social-network"><img src="../assets/instagram.png" alt=""></div>
@@ -19,33 +19,37 @@
 </template>
 
 <script>
+import Podcaster from "./elements/Podcaster";
+import Module from "./elements/Module";
 export default {
-  name: "MyHeader"
+  name: "MyHeader",
+  components: {Module, Podcaster},
+  data(){
+    return{
+      dialogVisible: false
+    }
+  },
+  methods: {
+    showDialog() {
+      this.dialogVisible = !this.dialogVisible
+    }
+  }
 }
 </script>
 
 <style scoped>
+
+.navigate{
+  background-color: #1C0030;
+  display: flex;
+  padding-top: 46px;
+}
 .name{
   width: 20%;
   display: flex;
   justify-content: center;
   margin: 10px;
 }
-.navigate{
-  background-color: #1C0030;
-  display: flex;
-  /*flex-direction: column;*/
-  padding-top: 46px;
-  flex-wrap: wrap;
-}
-.social-networks{
-  width: 35%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 10px;
-}
-
 .social-network{
   margin-left: 15px;
   width: 30px;
@@ -56,37 +60,6 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
-.ellipse{
-  width: 144px;
-  height: 61px;
-  background: #3531A9;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  transform: rotate(-30deg);
-  border-radius: 200%;
-}
-.podcaster{
-  position: absolute;
-  width: 154px;
-  height: 58px;
-  transform: rotate(30deg);
-  font-family: Caveat;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 46px;
-  line-height: 58px;
-  color: #FFFFFF;
-}
-.pages{
-  width: 40%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 10px;
-}
 .page{
   font-family: SF Pro Display;
   font-style: normal;
@@ -94,5 +67,40 @@ export default {
   font-size: 18px;
   line-height: 21px;
   color: #FFFFFF;
+}
+@media screen and (max-width: 700px) {
+  .navigate{
+    display: flex;
+    justify-content: space-around;
+  }
+  .pages, .social-networks{
+    display: none;
+  }
+  .hamburger{
+    background-image: url("../assets/hamburger.png");
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+  }
+}
+@media screen and (min-width: 701px) {
+  .hamburger{
+    display: none;
+  }
+  .social-networks{
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+  }
+  .pages{
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px;
+  }
 }
 </style>

@@ -1,42 +1,49 @@
 <template>
-  <section class="cards">
+  <section ref="target" class="cards">
     <div class="plans">
-      <transition appear
-          name="custom-classes-transition"
-          enter-active-class="animated tada"
-          leave-active-class="animated bounceOutRight"
-      >
-    <img src="../assets/3.png" alt="">
-      </transition>
-      <transition appear
-                  name="custom-classes-transition"
-                  enter-active-class="animated tada"
-                  leave-active-class="animated bounceOutRight"
-      >
-        <img src="../assets/2.png" alt="">
-      </transition>
-      <transition appear
-                  name="custom-classes-transition"
-                  enter-active-class="animated tada"
-                  leave-active-class="animated bounceOutRight"
-      >
-        <img src="../assets/22.png" alt="">
-      </transition>
-
+      <div class="window">
+      <card>
+        <div class="card first_card"></div>
+      </card>
+      </div>
+      <div class="window">
+      <card>
+        <div class="card second_card"></div>
+      </card>
+      </div>
+      <div class="window">
+      <card>
+        <div class="card third_card"></div>
+      </card>
+      </div>
     </div>
-    <div><img src="../assets/button.png" alt=""></div>
   </section>
 </template>
 
 <script>
+import Card from "./elements/Card";
 export default {
-  name: "Cards"
+  name: "Cards",
+  components: {Card},
 }
 </script>
 
 <style scoped>
+.card{
+  width: 275px;
+  height: 344px;
+  /*margin: 20px;*/
+}
+.first_card{
+  background-image: url("../assets/3.png");
+}
+.second_card{
+  background-image: url("../assets/2.png");
+}
+.third_card{
+  background-image: url("../assets/22.png");
+}
 .cards{
-  min-height: 680px;
   background: #09002B;
   display: flex;
   justify-content: center;
@@ -44,7 +51,8 @@ export default {
   flex-direction: column;
 }
 .plans{
-  width: 100%;
+  min-height: 90vh;
+  width: 100vw;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -53,4 +61,19 @@ export default {
 img{
   margin: 10px;
 }
+@media screen and (max-width: 590px) {
+  .window{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media screen and (min-width: 591px) and (max-width: 901px) {
+  .plans{
+    height: 120vh;
+  }
+}
+
 </style>

@@ -1,61 +1,83 @@
 <template>
-  <section class="desktop">
-    <div class="text">
-      <div class="name-of-others">Listen on desktop or mobile</div>
-      <div class="description-of-others">Lorem ipsum dolor sit amet, consectetur adipiscing elit. uisque ullamcorper porttitor blandit. Praesent lorem magna, fring</div>
+  <section class="desktop_and_mobile">
+    <div class="description">
+    <block  :name="name" :description="description" class="text">
+    </block>
     </div>
     <div class="imgs">
-      <img class="phone" src="../assets/phone.png" alt="">
-      <img src="../assets/desktop.png" alt="">
+      <div class="phone"></div>
+      <div class="desktop"></div>
     </div>
   </section>
 </template>
 
 <script>
+import Block from "./elements/Block";
+
 export default {
-  name: "Desktop"
+  name: "Desktop",
+  components: {Block},
+  data(){
+    return{
+      name: 'Listen on desktop or mobile',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. uisque ullamcorper porttitor blandit. Praesent lorem magna, fring'
+    }
+  },
 }
 </script>
 
 <style scoped>
-.desktop{
+.desktop_and_mobile{
   background: #09002B;
-  height: 90vh;
+  padding: 20px;
+  height: 80vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-wrap: wrap;
 }
-.name-of-others{
-  font-family: SF Pro Display;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 45px;
-  text-align: center;
-  color: #FFFFFF;
-
-}
-.description-of-others{
-  font-family: SF Pro Display;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 19px;
-  text-align: center;
-  color: #FFFFFF;
-  max-width: 460px;
-  margin: 7px;
+.description{
+  width: 50%;
+  display: flex;
+  justify-content: center;
 }
 .imgs{
+  width: 50%;
   display: flex;
   align-items: center;
 justify-content: center;
   position: relative;
 }
 .phone{
-  position: absolute;
-  left: -150px;
-  top: 84px;
+  width: 144px;
+  height: 299px;
+  background-image: url("../assets/phone.png");
+  background-size: cover;
+}
+.desktop{
+  width: 546px;
+  height: 351px;
+  background-image: url("../assets/desktop.png");
+  background-size: cover;
+}
+.text{
+  width: 638px;
+}
+@media screen and (min-width: 701px) {
+  .phone{
+    position: absolute;
+    left: -20px;
+    top: 120px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .imgs{
+    width: 100%;
+  }
+  .text{
+    width: 90%;
+  }
+  .desktop{
+    display: none;
+  }
 }
 </style>
